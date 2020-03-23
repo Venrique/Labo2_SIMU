@@ -185,7 +185,7 @@ class condition: public item{
 class mesh{
         /* Si la longitud L es constante */
         // float parameters[3]; Para este caso, los valores de l, k y Q
-        flat parameters[2];
+        float parameters[2];
         int sizes[4]; //La cantidad de nodos, elementos, condiciones de dirichlet y neumann
         node *node_list; //Arreglo de nodos
         element *element_list; //Arreglo de elementos
