@@ -165,7 +165,7 @@ class element: public item{
 class condition: public item{
 
     public:
-        //Una condici�n usa un entero y un real: un identificador de nodo, y un valor a aplicar
+        //Una condición usa un entero y un real: un identificador de nodo, y un valor a aplicar
         void setIntFloat(int node_to_apply, float prescribed_value){
             node1 = node_to_apply;
             value = prescribed_value;
