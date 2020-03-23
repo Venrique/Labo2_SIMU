@@ -49,5 +49,69 @@ Neumann
 EndNeumann
 
 ```
+### El classes.h
+
+### Enum
+
+```cpp
+
+//Se crean cuatro enumeraciones que serviran para dar mayor legibilidad al codigo
+
+enum lines {NOLINE,SINGLELINE,DOUBLELINE};
+enum modes {NOMODE,INT_FLOAT,INT_INT_INT};
+//Ya no necesitamos tener la longitud
+enum parameters {THERMAL_CONDUCTIVITY,HEAT_SOURCE};
+enum sizes {NODES,ELEMENTS,DIRICHLET,NEUMANN};
+
+```
+
+### Clase Abstracta: Item
+
+```cpp
+//Clase abstracta que representa un objeto en la malla
+
+class item{
+
+    protected:
+        int id; //identificador
+        float x; //coordenada en X (basta con este dato por estar en 1 dimension)
+        int node1; //identificador de nodo
+        int node2; //segundo identificador de nodo
+        float value; //valor asociado al objeto
+        
+    public:
+        //Getters para los atributos
+        int getId() {
+            return id;
+        }
+
+        float getX() {
+            return x;
+        }
+
+        int getNode1() {
+            return node1;
+        }
+
+        int getNode2() {
+            return node2;
+        }
+
+        float getValue() {
+            return value;
+        }
+        
+        //Metodos abstractos para instanciar los atributos de acuerdo a las necesidades
+
+        //Caso en que se utiliza un entero y un real
+        virtual void setIntFloat(int n,float r)=0;
+
+        //Caso en que se utilizan tres enteros
+        virtual void setIntIntInt(int n1,int n2,int n3)=0;
+
+};
+
+```
+
 <hr>
 <p align="center">Para servirles, <strong>Equipo de Instructores</strong> </p>
