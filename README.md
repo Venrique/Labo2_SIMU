@@ -10,7 +10,7 @@ En esta práctica trabajaremos con los siguientes temas:
 
 ### El problem.msh
 
-Para fines ilustrativos, este problem.msh considera la longitud constante
+Para fines ilustrativos, este problem.msh considera la longitud L constante
 ```cpp
 0.5 5 5   // representa L K y Q
 10 9 1 1  // representa el numero de: nodos, elementos, condiciones de Dir y condiciones de Newm
@@ -54,7 +54,7 @@ EndNeumann
 
 ### Enum
 
-Estaremos trabajando con longitudes distintas, por lo que no un Enum para este dato
+Estaremos trabajando con longitudes distintas, por lo que no utilizaremos un Enum para este dato
 
 ```cpp
 
