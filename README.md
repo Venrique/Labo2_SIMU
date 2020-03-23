@@ -113,5 +113,157 @@ class item{
 
 ```
 
+### Clase nodo
+
+```cpp
+//Clase que representa cada nodo de la malla
+
+class node: public item{
+
+    public:
+        //Un nodo usa un entero y un real: su identificador, y su coordenada en X
+        void setIntFloat(int identifier, float x_coordinate){
+            id = identifier;
+            x = x_coordinate;
+        }
+
+        void setIntIntInt(int n1,int n2,int n3){
+        }
+
+};
+```
+
+### Clase elemento
+
+```cpp
+//Clase que representa un elemento en la malla
+
+class element: public item{
+
+    public:
+        void setIntFloat(int n1,float r){
+        }
+
+        //Un elemento usa tres enteros: su identificador, y los identificadores de sus nodos
+        void setIntIntInt(int identifier, int firstnode,int secondnode){
+            id = identifier;
+            node1 = firstnode;
+            node2 = secondnode;
+        }
+
+};
+```
+
+### Clase condicion
+
+```cpp
+//Clase que representa una condicion impuesta en un nodo de la malla
+
+class condition: public item{
+
+    public:
+        //Una condici�n usa un entero y un real: un identificador de nodo, y un valor a aplicar
+        void setIntFloat(int node_to_apply, float prescribed_value){
+            node1 = node_to_apply;
+            value = prescribed_value;
+        }
+
+         void setIntIntInt(int n1,int n2,int n3){
+        }
+
+};
+```
+
+### Clase mesh
+
+```cpp
+//Clase que representa la malla del problema
+
+class mesh{
+        float parameters[3]; //Para este caso, los valores de l, k y Q
+        int sizes[4]; //La cantidad de nodos, elementos, condiciones de dirichlet y neumann
+        node *node_list; //Arreglo de nodos
+        element *element_list; //Arreglo de elementos
+        condition *dirichlet_list; //Arreglo de condiciones de Dirichlet
+        condition *neumann_list; //Arreglo de condiciones de Neumann
+    public:
+        //Metodo para instanciar el arreglo de parametros, almacenando los
+        //valores de l, k y Q, en ese orden
+        //Ya no recibimos la longitud aqui
+        void setParameters(float k,float Q){
+            parameters[THERMAL_CONDUCTIVITY]=k;
+            parameters[HEAT_SOURCE]=Q;
+        }
+
+        //Metodo para instanciar el arreglo de cantidades, almacenando la cantidad
+        //de nodos, de elementos, y de condiciones (de Dirichlet y de Neumann)
+        void setSizes(int nnodes,int neltos,int ndirich,int nneu){
+            sizes[NODES] = nnodes;
+            sizes[ELEMENTS] = neltos;
+            sizes[DIRICHLET] = ndirich;
+            sizes[NEUMANN] = nneu;
+        }
+
+        //Metodo para obtener una cantidad en particular
+        int getSize(int s){
+            return sizes[s];
+        }
+
+        //Metodo para obtener un parametro en particular
+        float getParameter(int p){
+            return parameters[p];
+        }
+
+        //Metodo para instanciar los cuatro atributos arreglo, usando
+        //las cantidades definidas
+        void createData(){
+            node_list = new node[sizes[NODES]];
+            element_list = new element[sizes[ELEMENTS]];
+            dirichlet_list = new condition[sizes[DIRICHLET]];
+            neumann_list = new condition[sizes[NEUMANN]];
+        }
+
+        //Getters para los atributos arreglo
+        node* getNodes(){
+            return node_list;
+        }
+        element* getElements(){
+            return element_list;
+        }
+        condition* getDirichlet(){
+            return dirichlet_list;
+        }
+        condition* getNeumann(){
+            return neumann_list;
+        }
+
+        //Metodo para obtener un nodo en particular
+        node getNode(int i){
+            return node_list[i];
+        }
+
+        //Metodo para obtener un elemento en particular
+        element getElement(int i){
+            return element_list[i];
+        }
+
+        //Metodo para obtener una condicion en particular
+        //(ya sea de Dirichlet o de Neumann)
+        condition getCondition(int i, int type){
+            if(type == DIRICHLET) return dirichlet_list[i];
+            else return neumann_list[i];
+        }
+
+        //Metodos posiblemente a utilizar en un futuro
+        /*void setNode(int i,int n,float r){
+            node_list[i].setIntFloat(n,r);
+        }*/
+        /*void setElement(int i,int id,int n1,int n2){
+            element_list[i].setIntIntInt(id,n1,n2);
+        }*/
+};
+
+```
+
 <hr>
 <p align="center">Para servirles, <strong>Equipo de Instructores</strong> </p>
