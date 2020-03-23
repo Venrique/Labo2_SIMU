@@ -183,15 +183,18 @@ class condition: public item{
 //Clase que representa la malla del problema
 
 class mesh{
-        float parameters[3]; //Para este caso, los valores de l, k y Q
+        /* Si la longitud L es constante */
+        // float parameters[3]; Para este caso, los valores de l, k y Q
+        flat parameters[2];
         int sizes[4]; //La cantidad de nodos, elementos, condiciones de dirichlet y neumann
         node *node_list; //Arreglo de nodos
         element *element_list; //Arreglo de elementos
         condition *dirichlet_list; //Arreglo de condiciones de Dirichlet
         condition *neumann_list; //Arreglo de condiciones de Neumann
     public:
-        //Metodo para instanciar el arreglo de parametros, almacenando los
-        //valores de l, k y Q, en ese orden
+        /* Metodo para instanciar el arreglo de parametros, almacenando los
+         k y Q, en ese orden */
+        
         //Ya no recibimos la longitud aqui
         void setParameters(float k,float Q){
             parameters[THERMAL_CONDUCTIVITY]=k;
@@ -256,14 +259,6 @@ class mesh{
             if(type == DIRICHLET) return dirichlet_list[i];
             else return neumann_list[i];
         }
-
-        //Metodos posiblemente a utilizar en un futuro
-        /*void setNode(int i,int n,float r){
-            node_list[i].setIntFloat(n,r);
-        }*/
-        /*void setElement(int i,int id,int n1,int n2){
-            element_list[i].setIntIntInt(id,n1,n2);
-        }*/
 };
 
 ```
