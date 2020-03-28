@@ -30,7 +30,6 @@ int main() {
     file >> nnodes >> neltos >> ndirich >> nneu;
     
     file >> line;
-    file >> line;
 
     m.setParameters(ANSWER, ANSWER);
     m.setSizes(ANSWER, ANSWER, ANSWER, ANSWER);
